@@ -2,7 +2,7 @@
 
 # IPAddressManager Instructions
 
-Note: Regarding java package creation and usege, please refer to [the Guideline](https://github.com/PicoSupport/PicoSupport/blob/master/Call%20And%20Export%20Jar.docx)
+Note: Regarding java package creation and usege, please refer to [the Guideline](https://github.com/PicoSupport/PicoSupport/blob/master/How_to_use_JAR_file_in_Unity_project_on_Pico_device.docx)
 
 1. Create a new Unity project and copy the PicovrWifiManager_vxxx. Jar package in the plugins-> Android in the Demo to the directory corresponding to the Unity project.
 
