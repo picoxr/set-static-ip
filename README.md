@@ -23,7 +23,7 @@ android:name=" com.example.picovripaddress.picovrWifiManager"
 
    | Interface           | Explain                 | Remark                                                       |
    | ------------------- | ----------------------- | :----------------------------------------------------------- |
-   | adnroidConnectWifi  | Wifi Connection         | PicoUnityActivity.CallObjectMethod("adnroidConnectWifi",<br/>new object[] { "username", "password" }); |
+   | androidConnectWifi  | Wifi Connection         | PicoUnityActivity.CallObjectMethod("adnroidConnectWifi",<br/>new object[] { "username", "password" }); |
    | androidGetIpAddress | Get IP address          | string ip="" ;            PicoUnityActivity.CallObjectMethod<string>(ref<br/>ip, "androidGetIpAddress"); |
    | androidGetGateWay   | Get the gateway address | string gateway="";  PicoUnityActivity.CallObjectMethod<string>(ref<br/>gateway, "androidGetGateWay"); |
    | androidGetDNS       | Get DNS                 | string mdns="";        PicoUnityActivity.CallObjectMethod<string>(ref<br/>mdns, "androidGetDNS"); |
