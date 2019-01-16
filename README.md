@@ -2,35 +2,23 @@
 
 Note: Regarding java package creation and usege, please refer to [the Guideline](https://github.com/PicoSupport/PicoSupport/blob/master/How_to_use_JAR_file_in_Unity_project_on_Pico_device.docx)
 
-1. Create a new Unity project and copy the PicovrWifiManager_vxxx. Jar package in the plugins-> Android in the Demo to the directory corresponding to the Unity project.
+## Introduction
+set static IP address
 
-2. Modify AndroidMinifest.xml .Add Permission
+## Class Name
+android:name=" com.example.picovripaddress.picovrWifiManager"
 
-   ```
-   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-   <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-   <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-   <uses-permission android:name="android.permission.INTERNET" />
-   <uses-permission android:name="android.permission.WAKE_LOCK" />
-   
-   ```
+## Permission
+```
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+```
 
-   Modify MainActivity :
-
-   ```
-   android:name=" com.example.picovripaddress.picovrWifiManager"
-   ```
-   ![](https://github.com/PicoSupport/PicoIPAddress/blob/master/01.png)
-
-3. Copy the script of PicoUnityActivity. cs in the Demo to any directory of Unity project.
-
-4. Call Android interface : For example Call Android's Wifi interface
-
-   ```
-   PicoUnityActivity.CallObjectMethod("adnroidConnectWifi", new object[] { "pico_tob", "pico2016" });
-   ```
-
+## Interfaces List
    ​                                                                  Interface Instructions
 
    | Interface           | Explain                 | Remark                                                       |
