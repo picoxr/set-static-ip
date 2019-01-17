@@ -19,7 +19,6 @@ android:name=" com.example.picovripaddress.picovrWifiManager"
 ```
 
 ## Interfaces List
-   ​                                                                  Interface Instructions
 
    | Interface           | Explain                 | Remark                                                       |
    | ------------------- | ----------------------- | :----------------------------------------------------------- |
