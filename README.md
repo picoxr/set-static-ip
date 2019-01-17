@@ -3,7 +3,7 @@
 Note: Regarding java package creation and usege, please refer to [the Guideline](https://github.com/PicoSupport/PicoSupport/blob/master/How_to_use_JAR_file_in_Unity_project_on_Pico_device.docx)
 
 ## Introduction
-set static IP address
+set a static IP address to Pico device
 
 ## Class Name
 android:name=" com.example.picovripaddress.picovrWifiManager"
