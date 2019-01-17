@@ -6,7 +6,9 @@ Note: Regarding JAR file creation and usage, please refer to [the Guideline](htt
 set a static IP address on Pico device
 
 ## Class Name
+```
 android:name=" com.example.picovripaddress.picovrWifiManager"
+```
 
 ## Permission
 ```
