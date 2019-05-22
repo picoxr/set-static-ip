@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:ems="10"
-            android:text="pico_tob" >
+            android:text="support" >
         </EditText>
 
         <TextView
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:ems="10"
-            android:text="pico2016" >
+            android:text="pico@2019" >
         </EditText>
     </LinearLayout>
 

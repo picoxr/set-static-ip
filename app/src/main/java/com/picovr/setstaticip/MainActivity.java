@@ -1,7 +1,8 @@
-package jeffrey.example.com.picoipaddress;
+package com.picovr.setstaticip;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.DhcpInfo;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
@@ -40,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        et_ssid =  findViewById(R.id.et_ssid);
-        et_password =  findViewById(R.id.et_password);
-        et_getip =  findViewById(R.id.et_getip);
-        et_getgateway =  findViewById(R.id.et_getgateway);
-        et_getdns =  findViewById(R.id.et_getdns);
+        et_ssid = findViewById(R.id.et_ssid);
+        et_password = findViewById(R.id.et_password);
+        et_getip = findViewById(R.id.et_getip);
+        et_getgateway = findViewById(R.id.et_getgateway);
+        et_getdns = findViewById(R.id.et_getdns);
 
         wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
@@ -63,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getIpClick(View view) {
-
         Log.d(TAG, "getIpClick");
 
         connectionInfo = wifiManager.getConnectionInfo();
@@ -91,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
     public void setIpClick(View view) {
 
         Log.d(TAG, "setIpClick");
+        SSID = et_ssid.getText().toString().trim();
+        PASSWORD = et_password.getText().toString().trim();
         Log.d(TAG, "SSID = " + SSID);
         if (!et_getip.getText().toString().trim().isEmpty() && !et_getgateway.getText().toString().trim().isEmpty()
                 && !et_getdns.getText().toString().trim().isEmpty()) {
@@ -136,20 +138,22 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if (wifiManager.disconnect()){
-            boolean c =wifiManager.reconnect();
-            Log.d(TAG,  " c = " + c);
+        if (wifiManager.disconnect()) {
+            boolean c = wifiManager.reconnect();
+            Log.d(TAG, " c = " + c);
         }
 
     }
 
     public WifiConfiguration IsExsits(String SSID) {
         Log.d(TAG, "IsExsits SSID = " + SSID);
-        List<WifiConfiguration> existingConfigs = wifiManager.getConfiguredNetworks();
-        for (WifiConfiguration existingConfig : existingConfigs) {
-            if (existingConfig.SSID.equals("\"" + SSID + "\"")) {
-                Log.d(TAG, "existingConfig = " + existingConfig.SSID);
-                return existingConfig;
+        if (checkSelfPermission("android.permission.ACCESS_FINE_LOCATIONv") == PackageManager.PERMISSION_GRANTED) {
+            List<WifiConfiguration> existingConfigs = wifiManager.getConfiguredNetworks();
+            for (WifiConfiguration existingConfig : existingConfigs) {
+                if (existingConfig.SSID.equals("\"" + SSID + "\"")) {
+                    Log.d(TAG, "existingConfig = " + existingConfig.SSID);
+                    return existingConfig;
+                }
             }
         }
         return null;
@@ -215,29 +219,29 @@ public class MainActivity extends AppCompatActivity {
                 + ", ipAddress = " + ipAddress + ", prefixLength" + prefixLength + ", gateway = " + gateway);
         // First set up IpAssignment to STATIC.
         Object ipAssignment = getEnumValue("android.net.IpConfiguration$IpAssignment", "STATIC");
-        callMethod(config, "setIpAssignment", new String[] { "android.net.IpConfiguration$IpAssignment" },
-                new Object[] { ipAssignment });
+        callMethod(config, "setIpAssignment", new String[]{"android.net.IpConfiguration$IpAssignment"},
+                new Object[]{ipAssignment});
 
         // Then set properties in StaticIpConfiguration.
         Object staticIpConfig = newInstance("android.net.StaticIpConfiguration");
 
-        Object linkAddress = newInstance("android.net.LinkAddress", new Class[] { InetAddress.class, int.class },
-                new Object[] { ipAddress, prefixLength });
+        Object linkAddress = newInstance("android.net.LinkAddress", new Class[]{InetAddress.class, int.class},
+                new Object[]{ipAddress, prefixLength});
         setField(staticIpConfig, "ipAddress", linkAddress);
         setField(staticIpConfig, "gateway", gateway);
         ArrayList<Object> aa = (ArrayList<Object>) getField(staticIpConfig, "dnsServers");
         aa.clear();
         for (int i = 0; i < dns.length; i++)
             aa.add(dns[i]);
-        callMethod(config, "setStaticIpConfiguration", new String[] { "android.net.StaticIpConfiguration" },
-                new Object[] { staticIpConfig });
+        callMethod(config, "setStaticIpConfiguration", new String[]{"android.net.StaticIpConfiguration"},
+                new Object[]{staticIpConfig});
         Log.d(TAG, "conconconm" + config);
         int updateNetwork = manager.updateNetwork(config);
         boolean saveConfiguration = manager.saveConfiguration();
         Log.d(TAG, "updateNetwork" + updateNetwork + saveConfiguration);
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     private static Object getEnumValue(String enumClassName, String enumValue) throws ClassNotFoundException {
         Log.d(TAG, "getEnumValue");
         Log.d(TAG, "enumClassName = " + enumClassName + " ,enumValue = " + enumValue);
@@ -265,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
         return newInstance(className, new Class[0], new Object[0]);
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     private static Object newInstance(String className, Class[] parameterClasses, Object[] parameterValues)
             throws NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException,
             InvocationTargetException, ClassNotFoundException {
