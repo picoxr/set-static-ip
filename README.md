@@ -16,6 +16,7 @@ Add shardUserId property:
 ```
 android:sharedUserId="android.uid.system"
 ```
+```
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
 <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
@@ -25,12 +26,14 @@ android:sharedUserId="android.uid.system"
 ```
 
 ## Interfaces
+```
 init(Context context) //Initialization method. You need to invoke it in Start() like sample code does.
 void ConnectWifi(String ssid, String pwd)
 String getIpAddress()
 String getGateWay()
 String getDNS()
 void setIpAddress(String ssid, String pwd, String ip, String gateway, String dns)
+```
 
 ## Sample code
 
